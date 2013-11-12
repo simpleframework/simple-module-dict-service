@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<dict text="通用字典" name="common" dictMark="category">
+		<dict text="性别" name="common.sex">
+			<item text="男" codeNo="0"></item>
+			<item text="女" codeNo="1"></item>
+		</dict>
+		
+		<dict text="中国行政省" name="common.china.province">
+			<item text="河北省" codeNo="130000"></item>
+			<item text="山西省" codeNo="140000"></item>
+			<item text="内蒙古自治区" codeNo="150000"></item>
+			<item text="辽宁省" codeNo="210000"></item>
+			<item text="吉林省" codeNo="220000"></item>
+			<item text="黑龙江省" codeNo="230000"></item>
+			<item text="江苏省" codeNo="320000"></item>
+			<item text="浙江省" codeNo="330000"></item>
+			<item text="安徽省" codeNo="340000"></item>
+			<item text="福建省" codeNo="350000"></item>
+			<item text="江西省" codeNo="360000"></item>
+			<item text="山东省" codeNo="370000"></item>
+			<item text="河南省" codeNo="410000"></item>
+			<item text="湖北省" codeNo="420000"></item>
+			<item text="湖南省" codeNo="430000"></item>
+			<item text="广东省" codeNo="440000"></item>
+			<item text="广西壮族自治区" codeNo="450000"></item>
+			<item text="海南省" codeNo="460000"></item>
+			<item text="四川省" codeNo="510000"></item>
+			<item text="贵州省" codeNo="520000"></item>
+			<item text="云南省" codeNo="530000"></item>
+			<item text="西藏自治区" codeNo="540000"></item>
+			<item text="陕西省" codeNo="610000"></item>
+			<item text="甘肃省" codeNo="620000"></item>
+			<item text="青海省" codeNo="630000"></item>
+			<item text="宁夏回族自治区" codeNo="640000"></item>
+			<item text="新疆维吾尔自治区" codeNo="650000"></item>
+			<item text="台湾省" codeNo="710000"></item>
+		</dict>
+	</dict>
+</data>

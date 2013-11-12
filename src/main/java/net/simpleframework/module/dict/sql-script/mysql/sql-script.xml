@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+      create table sf_dict (
+        id char(32) not null,
+        parentid char(32),
+        name varchar(32) not null,
+        text varchar(32) not null, 
+        dictmark tinyint not null,
+        description varchar(256),
+        oorder int not null,
+        primary key(id),
+        unique(name)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_dict_item (
+        id char(32) not null,
+        dictid char(32) not null,
+        parentid char(32),
+        text varchar(128) not null, 
+        codeno varchar(128),
+        itemmark tinyint not null,
+        createDate datetime,
+        userid char(32),
+        description varchar(256),
+        oorder int not null,
+        primary key(id),
+        unique(dictid, codeno)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>
