@@ -17,7 +17,7 @@ public abstract class AbstractDict extends AbstractTextDescriptionBean implement
 
 	private ID parentId;
 
-	private long oorder;
+	private int oorder;
 
 	@Override
 	public ID getParentId() {
@@ -30,12 +30,12 @@ public abstract class AbstractDict extends AbstractTextDescriptionBean implement
 	}
 
 	@Override
-	public long getOorder() {
+	public int getOorder() {
 		return oorder;
 	}
 
 	@Override
-	public void setOorder(final long oorder) {
+	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
 }
