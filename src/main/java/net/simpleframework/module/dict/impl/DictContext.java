@@ -1,10 +1,12 @@
 package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.IADOManagerFactory;
+import net.simpleframework.ado.db.DbManagerFactory;
+import net.simpleframework.ctx.AbstractADOModuleContext;
+import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
-import net.simpleframework.ctx.service.ado.db.AbstractDbModuleContext;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.IDictContext;
@@ -17,11 +19,16 @@ import net.simpleframework.module.dict.IDictService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class DictContext extends AbstractDbModuleContext implements IDictContext {
+public abstract class DictContext extends AbstractADOModuleContext implements IDictContext {
 
 	@Override
-	protected DbEntityTable[] getEntityTables() {
-		return new DbEntityTable[] { Dict.TBL, DictItem.TBL };
+	public void onInit(final IApplicationContext application) throws Exception {
+		super.onInit(application);
+
+		final IADOManagerFactory aFactory = getADOManagerFactory();
+		if (aFactory instanceof DbManagerFactory) {
+			((DbManagerFactory) aFactory).regist(Dict.TBL, DictItem.TBL);
+		}
 	}
 
 	@Override
