@@ -77,7 +77,7 @@ public class DictItem extends AbstractDict {
 	}
 
 	public static DbEntityTable TBL = new DbEntityTable(DictItem.class, "sf_dict_item")
-			.setDefaultOrder(ColumnData.ORDER);
+			.setDefaultOrder(ColumnData.ASC("oorder"));
 
 	private static final long serialVersionUID = 5683629062027025972L;
 }
