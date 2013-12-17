@@ -1,7 +1,7 @@
 package net.simpleframework.module.dict;
 
 import static net.simpleframework.ctx.permission.IPermissionConst.ROLECHART_SYSTEM;
-import net.simpleframework.ctx.IADOModuleContext;
+import net.simpleframework.ctx.IModuleContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.permission.PermissionRole;
 
@@ -11,7 +11,7 @@ import net.simpleframework.ctx.permission.PermissionRole;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public interface IDictContext extends IADOModuleContext {
+public interface IDictContext extends IModuleContext {
 
 	static final String MODULE_NAME = "simple-module-dict";
 
