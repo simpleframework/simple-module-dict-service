@@ -1,7 +1,6 @@
 package net.simpleframework.module.dict;
 
 import net.simpleframework.ado.bean.INameBeanAware;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 
 /**
@@ -34,8 +33,6 @@ public class Dict extends AbstractDict implements INameBeanAware {
 	public void setDictMark(final EDictMark dictMark) {
 		this.dictMark = dictMark;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(Dict.class, "sf_dict");
 
 	private static final long serialVersionUID = -1642651214282707289L;
 }

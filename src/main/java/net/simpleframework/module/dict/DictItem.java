@@ -2,8 +2,6 @@ package net.simpleframework.module.dict;
 
 import java.util.Date;
 
-import net.simpleframework.ado.ColumnData;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -75,9 +73,6 @@ public class DictItem extends AbstractDict {
 	public void setUserId(final ID userId) {
 		this.userId = userId;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(DictItem.class, "sf_dict_item")
-			.setDefaultOrder(ColumnData.ASC("oorder"));
 
 	private static final long serialVersionUID = 5683629062027025972L;
 }

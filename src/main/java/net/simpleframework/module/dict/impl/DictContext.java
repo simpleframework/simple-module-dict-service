@@ -1,6 +1,7 @@
 package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
+import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.AbstractADOModuleContext;
@@ -22,7 +23,10 @@ public abstract class DictContext extends AbstractADOModuleContext implements ID
 		IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { Dict.TBL, DictItem.TBL };
+		return new DbEntityTable[] {
+				new DbEntityTable(Dict.class, "sf_dict"),
+				new DbEntityTable(DictItem.class, "sf_dict_item").setDefaultOrder(ColumnData
+						.ASC("oorder")) };
 	}
 
 	@Override
