@@ -42,7 +42,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 				COUNT_STATS.put(Convert.toString(row.get("dictId")), Convert.toInt(row.get("cc")));
 			}
 		}
-		return Convert.toInt(COUNT_STATS.get(Convert.toString(dict.getId())));
+		return Convert.toInt(COUNT_STATS.get(dict.getId().toString()));
 	}
 
 	@Override
