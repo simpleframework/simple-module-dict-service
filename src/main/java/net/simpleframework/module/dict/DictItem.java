@@ -2,6 +2,7 @@ package net.simpleframework.module.dict;
 
 import java.util.Date;
 
+import net.simpleframework.ado.bean.IDateAwareBean;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -13,7 +14,7 @@ import net.simpleframework.common.ID;
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" })
-public class DictItem extends AbstractDict {
+public class DictItem extends AbstractDict implements IDateAwareBean {
 
 	private ID dictId;
 
@@ -58,10 +59,12 @@ public class DictItem extends AbstractDict {
 		this.codeNo = codeNo;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return createDate;
 	}
 
+	@Override
 	public void setCreateDate(final Date createDate) {
 		this.createDate = createDate;
 	}
