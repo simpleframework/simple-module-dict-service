@@ -58,7 +58,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 		if (dict == null) {
 			return null;
 		}
-		return query("dictId=? and codeNo=?", dict.getId(), codeNo).next();
+		return getBean("dictId=? and codeNo=?", dict.getId(), codeNo);
 	}
 
 	@Override
