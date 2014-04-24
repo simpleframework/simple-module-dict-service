@@ -11,5 +11,5 @@ import net.simpleframework.ctx.ModuleContextFactory;
  */
 public interface IDictContextAware extends IModuleContextAware {
 
-	static IDictContext context = ModuleContextFactory.get(IDictContext.class);
+	static IDictContext dictContext = ModuleContextFactory.get(IDictContext.class);
 }

@@ -33,7 +33,7 @@ public class XmlImporter extends AbstractImporter {
 	}
 
 	private void doDict(final Iterator<XmlElement> it, final Dict parent) {
-		final IDictService service = context.getDictService();
+		final IDictService service = dictContext.getDictService();
 		while (it.hasNext()) {
 			final XmlElement element = it.next();
 			final String name = element.attributeValue("name");
@@ -70,7 +70,7 @@ public class XmlImporter extends AbstractImporter {
 	}
 
 	private void doDictItem(final Iterator<XmlElement> it, final Dict dict) {
-		final IDictItemService service = context.getDictItemService();
+		final IDictItemService service = dictContext.getDictItemService();
 		while (it.hasNext()) {
 			final XmlElement element = it.next();
 			final String text = element.attributeValue("text");

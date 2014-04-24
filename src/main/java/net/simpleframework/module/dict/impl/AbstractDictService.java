@@ -15,6 +15,6 @@ public abstract class AbstractDictService<T extends Serializable> extends Abstra
 		implements IDictContextAware {
 
 	protected DictItemService getDictItemService() {
-		return (DictItemService) context.getDictItemService();
+		return (DictItemService) dictContext.getDictItemService();
 	}
 }
