@@ -12,9 +12,11 @@ import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.ID;
 import net.simpleframework.ctx.ModuleException;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.EDictItemMark;
+import net.simpleframework.module.dict.IDictContextAware;
 import net.simpleframework.module.dict.IDictItemService;
 
 /**
@@ -23,7 +25,8 @@ import net.simpleframework.module.dict.IDictItemService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class DictItemService extends AbstractDictService<DictItem> implements IDictItemService {
+public class DictItemService extends AbstractDbBeanService<DictItem> implements IDictItemService,
+		IDictContextAware {
 
 	@Override
 	public IDataQuery<DictItem> queryItems(final Dict dict) {

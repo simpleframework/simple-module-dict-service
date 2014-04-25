@@ -2,6 +2,7 @@ package net.simpleframework.module.dict;
 
 import net.simpleframework.ctx.IModuleContextAware;
 import net.simpleframework.ctx.ModuleContextFactory;
+import net.simpleframework.module.dict.impl.DictItemService;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -12,4 +13,6 @@ import net.simpleframework.ctx.ModuleContextFactory;
 public interface IDictContextAware extends IModuleContextAware {
 
 	static IDictContext dictContext = ModuleContextFactory.get(IDictContext.class);
+
+	static DictItemService diService = (DictItemService) dictContext.getDictItemService();
 }
