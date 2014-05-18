@@ -19,7 +19,7 @@ import net.simpleframework.module.dict.IDictService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class DictContext extends AbstractADOModuleContext implements IDictContext,
+public class DictContext extends AbstractADOModuleContext implements IDictContext,
 		IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
