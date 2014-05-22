@@ -89,7 +89,6 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 				super.onBeforeUpdate(service, columns, beans);
 				for (final Object o : beans) {
 					final DictItem item = (DictItem) o;
-					assertParentId(item);
 					if (item.getItemMark() == EDictItemMark.builtIn_r) {
 						throw ModuleException.of($m("DictItemService.1"));
 					}

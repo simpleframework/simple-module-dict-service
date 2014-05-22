@@ -44,7 +44,6 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 				super.onBeforeUpdate(service, columns, beans);
 				for (final Object o : beans) {
 					final Dict dict = (Dict) o;
-					assertParentId(dict);
 					if (dict.getDictMark() == EDictMark.builtIn) {
 						throw ModuleException.of($m("DictService.1"));
 					}
