@@ -11,7 +11,7 @@ import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.ID;
-import net.simpleframework.ctx.ModuleException;
+import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
@@ -78,7 +78,7 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 				super.onBeforeDelete(service, paramsValue);
 				for (final DictItem item : coll(paramsValue)) {
 					if (item.getItemMark() != EDictItemMark.normal) {
-						throw ModuleException.of($m("DictItemService.0"));
+						throw ModuleContextException.of($m("DictItemService.0"));
 					}
 				}
 			}
@@ -90,7 +90,7 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 				for (final Object o : beans) {
 					final DictItem item = (DictItem) o;
 					if (item.getItemMark() == EDictItemMark.builtIn_r) {
-						throw ModuleException.of($m("DictItemService.1"));
+						throw ModuleContextException.of($m("DictItemService.1"));
 					}
 				}
 			}

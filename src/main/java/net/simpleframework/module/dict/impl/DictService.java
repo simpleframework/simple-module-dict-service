@@ -3,7 +3,7 @@ package net.simpleframework.module.dict.impl;
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
-import net.simpleframework.ctx.ModuleException;
+import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.EDictMark;
@@ -33,7 +33,7 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 				for (final Dict dict : coll(paramsValue)) {
 					// 存在下级字典
 					if (queryChildren(dict).getCount() > 0) {
-						throw ModuleException.of($m("DictService.0"));
+						throw ModuleContextException.of($m("DictService.0"));
 					}
 				}
 			}
@@ -45,7 +45,7 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 				for (final Object o : beans) {
 					final Dict dict = (Dict) o;
 					if (dict.getDictMark() == EDictMark.builtIn) {
-						throw ModuleException.of($m("DictService.1"));
+						throw ModuleContextException.of($m("DictService.1"));
 					}
 				}
 			}
