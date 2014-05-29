@@ -12,11 +12,14 @@ import net.simpleframework.ctx.common.IDataImportHandler;
  *         http://www.simpleframework.net
  */
 public class DefaultDictImportHandler implements IDataImportHandler {
+	@Override
+	public boolean isEnable() {
+		return false;
+	}
 
 	@Override
 	public void doImport(final IApplicationContext application) throws Exception {
 		ObjectFactory.singleton(XmlImporter.class).doImport(
 				ClassUtils.getResourceAsStream(DefaultDictImportHandler.class, "dict-data.xml"));
 	}
-
 }
