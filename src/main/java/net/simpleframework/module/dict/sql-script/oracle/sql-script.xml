@@ -29,6 +29,8 @@
         itemmark number(4) not null,
         createDate timestamp,
         userid char(32),
+        ext1 varchar2(64 char),
+        ext2 number(11),
         description varchar2(256 char),
         oorder number(11) not null,
         primary key(id),
