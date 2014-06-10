@@ -29,9 +29,9 @@
         itemmark int2 not null,
         createDate timestamp,
         userid char(32),
-        ext1 varchar(64),
-        ext2 int4,
         description varchar(256),
+        ext1 varchar(64),
+        ext2 int4 not null,
         oorder int4 not null,
         primary key(id),
         unique(dictid, codeno)

@@ -28,10 +28,10 @@
         codeno varchar(128),
         itemmark tinyint not null,
         createDate datetime,
-        userid char(32),
-        ext1 varchar(64),
-        ext2 int,
+        userid char(32),       
         description varchar(256),
+        ext1 varchar(64),
+        ext2 int not null,
         oorder int not null,
         primary key(id),
         unique(dictid, codeno)

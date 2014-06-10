@@ -28,10 +28,10 @@
         codeno varchar2(128 char),
         itemmark number(4) not null,
         createDate timestamp,
-        userid char(32),
-        ext1 varchar2(64 char),
-        ext2 number(11),
+        userid char(32),       
         description varchar2(256 char),
+        ext1 varchar2(64 char),
+        ext2 number(11) not null,
         oorder number(11) not null,
         primary key(id),
         unique(dictid, codeno)
