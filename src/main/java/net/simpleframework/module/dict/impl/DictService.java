@@ -25,6 +25,8 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
