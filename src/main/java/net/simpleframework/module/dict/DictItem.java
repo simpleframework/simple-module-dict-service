@@ -13,7 +13,7 @@ import net.simpleframework.common.ID;
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
-		"net.simpleframework.module.log.EntityDeleteLogAdapter" })
+		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "codeNo" })
 public class DictItem extends AbstractDict implements IDateAwareBean {
 
 	private ID dictId;
