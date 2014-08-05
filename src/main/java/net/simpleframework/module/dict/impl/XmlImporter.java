@@ -27,7 +27,7 @@ public class XmlImporter extends AbstractImporter {
 			try {
 				doDict(new XmlDocument(iStream).getRoot().elementIterator("dict"), null);
 			} catch (final Exception e) {
-				log.warn(e);
+				getLog().warn(e);
 			}
 		}
 	}
