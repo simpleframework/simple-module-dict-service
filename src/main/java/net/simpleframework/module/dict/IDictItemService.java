@@ -44,6 +44,15 @@ public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanSer
 	DictItem getItemByCode(Dict dict, String codeNo);
 
 	/**
+	 * 根据文本查找
+	 * 
+	 * @param dict
+	 * @param text
+	 * @return
+	 */
+	IDataQuery<DictItem> queryItems(Dict dict, String text);
+
+	/**
 	 * 缓存字典数据
 	 * 
 	 * @param dict

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.Convert;
@@ -29,11 +30,32 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 		IDictContextAware {
 
 	@Override
+	public DictItem getItemByCode(final Dict dict, final String codeNo) {
+		if (dict == null) {
+			return null;
+		}
+		return getBean("dictId=? and codeNo=?", dict.getId(), codeNo);
+	}
+
+	@Override
 	public IDataQuery<DictItem> queryItems(final Dict dict) {
 		if (dict == null) {
 			return DataQueryUtils.nullQuery();
 		}
 		return query("dictId=?", dict.getId());
+	}
+
+	@Override
+	public IDataQuery<DictItem> queryItems(final Dict dict, final String text) {
+		return query("dictId=? and text like '%" + SqlUtils.sqlEscape(text) + "%'", dict.getId());
+	}
+
+	@Override
+	public IDataQuery<DictItem> queryRoot(final Dict dict) {
+		if (dict == null) {
+			return DataQueryUtils.nullQuery();
+		}
+		return query("dictId=? and parentId is null", dict.getId());
 	}
 
 	@Override
@@ -46,22 +68,6 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 			}
 		}
 		return Convert.toInt(COUNT_STATS.get(dict.getId().toString()));
-	}
-
-	@Override
-	public IDataQuery<DictItem> queryRoot(final Dict dict) {
-		if (dict == null) {
-			return DataQueryUtils.nullQuery();
-		}
-		return query("dictId=? and parentId is null", dict.getId());
-	}
-
-	@Override
-	public DictItem getItemByCode(final Dict dict, final String codeNo) {
-		if (dict == null) {
-			return null;
-		}
-		return getBean("dictId=? and codeNo=?", dict.getId(), codeNo);
 	}
 
 	@Override
