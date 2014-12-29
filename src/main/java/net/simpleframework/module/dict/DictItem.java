@@ -27,6 +27,8 @@ public class DictItem extends AbstractDict implements IDateAwareBean {
 
 	/* 字典条目的拥有人，null为全局 */
 	private ID userId;
+	/* 域id */
+	private String domainId;
 
 	/* 扩展字段1 */
 	private String ext1;
@@ -73,6 +75,14 @@ public class DictItem extends AbstractDict implements IDateAwareBean {
 
 	public void setUserId(final ID userId) {
 		this.userId = userId;
+	}
+
+	public String getDomainId() {
+		return domainId;
+	}
+
+	public void setDomainId(final String domainId) {
+		this.domainId = domainId;
 	}
 
 	public String getExt1() {

@@ -29,6 +29,7 @@
         itemmark int2 not null,
         createDate timestamp,
         userid char(32),
+        domainid varchar(32),
         description varchar(256),
         ext1 varchar(64),
         ext2 int4 not null,
