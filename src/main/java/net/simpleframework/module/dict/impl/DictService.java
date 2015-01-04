@@ -1,6 +1,7 @@
 package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
+import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ctx.ModuleContextException;
@@ -21,6 +22,11 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 	@Override
 	public Dict getDictByName(final String name) {
 		return getBean("name=?", name);
+	}
+
+	@Override
+	protected ColumnData[] getDefaultOrderColumns() {
+		return ORDER_OORDER;
 	}
 
 	@Override
