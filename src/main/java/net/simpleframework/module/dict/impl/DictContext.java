@@ -30,13 +30,9 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 	}
 
 	@Override
-	public String getManagerRole() {
-		return ROLE_DICT_MANAGER;
-	}
-
-	@Override
 	protected Module createModule() {
-		return new Module().setName(MODULE_NAME).setText($m("DictContext.0")).setOrder(35);
+		return new Module().setManagerRole(ROLE_DICT_MANAGER).setName(MODULE_NAME)
+				.setText($m("DictContext.0")).setOrder(35);
 	}
 
 	@Override
