@@ -21,6 +21,8 @@ import net.simpleframework.module.dict.IDictService;
  */
 public class DictContext extends AbstractADOModuleContext implements IDictContext,
 		IDbEntityTableRegistry {
+	public static String ROLE_DICT_MANAGER;
+
 	@Override
 	public DbEntityTable[] createEntityTables() {
 		return new DbEntityTable[] {

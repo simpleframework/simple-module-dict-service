@@ -1,9 +1,7 @@
 package net.simpleframework.module.dict;
 
-import static net.simpleframework.ctx.permission.IPermissionConst.ROLECHART_SYSTEM;
 import net.simpleframework.ctx.IModuleContext;
 import net.simpleframework.ctx.IModuleRef;
-import net.simpleframework.ctx.permission.PermissionRole;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -14,9 +12,6 @@ import net.simpleframework.ctx.permission.PermissionRole;
 public interface IDictContext extends IModuleContext {
 
 	static final String MODULE_NAME = "simple-module-dict";
-
-	static final String ROLE_DICT_MANAGER = PermissionRole.toUniqueRolename(ROLECHART_SYSTEM,
-			"dict_manager");
 
 	/**
 	 * 获取字典管理器

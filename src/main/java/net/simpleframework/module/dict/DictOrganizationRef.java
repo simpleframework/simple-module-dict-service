@@ -2,7 +2,9 @@ package net.simpleframework.module.dict;
 
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ctx.IModuleContext;
+import net.simpleframework.module.dict.impl.DictContext;
 import net.simpleframework.organization.OrganizationRef;
+import net.simpleframework.organization.RolenameConst;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -16,6 +18,8 @@ public class DictOrganizationRef extends OrganizationRef {
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
 
-		createRole_SystemChart(IDictContext.ROLE_DICT_MANAGER, $m("DictOrganizationFace.0"));
+		DictContext.ROLE_DICT_MANAGER = RolenameConst.toUniqueRolename(
+				RolenameConst.ROLECHART_SYSTEM, "dict_manager");
+		createRole_SystemChart(DictContext.ROLE_DICT_MANAGER, $m("DictOrganizationFace.0"));
 	}
 }
