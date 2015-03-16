@@ -1,8 +1,9 @@
 package net.simpleframework.module.dict;
 
 import static net.simpleframework.common.I18n.$m;
+import static net.simpleframework.module.dict.impl.DictContext.ROLE_DICT_MANAGER;
 import net.simpleframework.ctx.IModuleContext;
-import net.simpleframework.module.dict.impl.DictContext;
+import net.simpleframework.organization.ERoleType;
 import net.simpleframework.organization.OrganizationRef;
 import net.simpleframework.organization.RolenameW;
 
@@ -18,8 +19,7 @@ public class DictOrganizationRef extends OrganizationRef {
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
 
-		DictContext.ROLE_DICT_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_SYSTEM,
-				"dict_manager");
-		createRole_SystemChart(DictContext.ROLE_DICT_MANAGER, $m("DictOrganizationFace.0"));
+		ROLE_DICT_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_ORG_DEFAULT, "dictmgr");
+		RolenameW.registRole("dictmgr", $m("DictOrganizationRef.0"), null, ERoleType.normal);
 	}
 }
