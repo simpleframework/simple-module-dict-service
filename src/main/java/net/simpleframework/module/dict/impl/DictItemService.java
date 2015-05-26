@@ -72,7 +72,7 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 
 	@Override
 	public Map<ID, Collection<DictItem>> queryAllTree(final Dict dict) {
-		return treeToMap(queryItems(dict).setFetchSize(0));
+		return toTreeMap(queryItems(dict));
 	}
 
 	@Override
