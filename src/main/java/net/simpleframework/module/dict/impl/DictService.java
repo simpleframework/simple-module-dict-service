@@ -36,7 +36,7 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				for (final Dict dict : coll(paramsValue)) {
 					// 存在下级字典
@@ -48,7 +48,7 @@ public class DictService extends AbstractDbBeanService<Dict> implements IDictSer
 
 			@Override
 			public void onBeforeUpdate(final IDbEntityManager<?> service, final String[] columns,
-					final Object[] beans) {
+					final Object[] beans) throws Exception {
 				super.onBeforeUpdate(service, columns, beans);
 				for (final Object o : beans) {
 					final Dict dict = (Dict) o;

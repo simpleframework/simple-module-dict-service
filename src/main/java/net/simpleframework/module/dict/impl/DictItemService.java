@@ -81,7 +81,7 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				for (final DictItem item : coll(paramsValue)) {
 					if (item.getItemMark() != EDictItemMark.normal) {
@@ -92,7 +92,7 @@ public class DictItemService extends AbstractDbBeanService<DictItem> implements 
 
 			@Override
 			public void onBeforeUpdate(final IDbEntityManager<?> service, final String[] columns,
-					final Object[] beans) {
+					final Object[] beans) throws Exception {
 				super.onBeforeUpdate(service, columns, beans);
 				for (final Object o : beans) {
 					final DictItem item = (DictItem) o;
