@@ -5,10 +5,8 @@ import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ctx.ModuleContextException;
-import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.EDictMark;
-import net.simpleframework.module.dict.IDictContextAware;
 import net.simpleframework.module.dict.IDictService;
 
 /**
@@ -17,8 +15,7 @@ import net.simpleframework.module.dict.IDictService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class DictService extends AbstractDbBeanService<Dict> implements IDictService,
-		IDictContextAware {
+public class DictService extends AbstractDictService<Dict> implements IDictService {
 	@Override
 	public Dict getDictByName(final String name) {
 		return getBean("name=?", name);
