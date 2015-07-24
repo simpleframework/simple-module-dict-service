@@ -30,12 +30,12 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<Dict>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<Dict> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
-				for (final Dict dict : coll(paramsValue)) {
+				super.onBeforeDelete(manager, paramsValue);
+				for (final Dict dict : coll(manager, paramsValue)) {
 					// 存在下级字典
 					if (queryChildren(dict).getCount() > 0) {
 						throw ModuleContextException.of($m("DictService.0"));
@@ -44,11 +44,10 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 			}
 
 			@Override
-			public void onBeforeUpdate(final IDbEntityManager<?> service, final String[] columns,
-					final Object[] beans) throws Exception {
+			public void onBeforeUpdate(final IDbEntityManager<Dict> service, final String[] columns,
+					final Dict[] beans) throws Exception {
 				super.onBeforeUpdate(service, columns, beans);
-				for (final Object o : beans) {
-					final Dict dict = (Dict) o;
+				for (final Dict dict : beans) {
 					if (dict.getDictMark() == EDictMark.builtIn) {
 						throw ModuleContextException.of($m("DictService.1"));
 					}

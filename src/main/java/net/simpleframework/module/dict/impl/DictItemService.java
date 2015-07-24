@@ -4,9 +4,11 @@ import static net.simpleframework.common.I18n.$m;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.ado.db.IDbManager;
 import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
@@ -55,6 +57,8 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 		return query("dictId=? and parentId is null", dict.getId());
 	}
 
+	protected Map<String, Integer> COUNT_STATS = new ConcurrentHashMap<String, Integer>();
+
 	@Override
 	public int queryCount(final Dict dict) {
 		if (COUNT_STATS.size() == 0) {
@@ -75,12 +79,12 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 	@Override
 	public void onInit() throws Exception {
 		super.onInit();
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<DictItem>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<DictItem> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
-				for (final DictItem item : coll(paramsValue)) {
+				super.onBeforeDelete(manager, paramsValue);
+				for (final DictItem item : coll(manager, paramsValue)) {
 					if (item.getItemMark() != EDictItemMark.normal) {
 						throw ModuleContextException.of($m("DictItemService.0"));
 					}
@@ -88,15 +92,20 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			}
 
 			@Override
-			public void onBeforeUpdate(final IDbEntityManager<?> service, final String[] columns,
-					final Object[] beans) throws Exception {
-				super.onBeforeUpdate(service, columns, beans);
-				for (final Object o : beans) {
-					final DictItem item = (DictItem) o;
+			public void onBeforeUpdate(final IDbEntityManager<DictItem> manager,
+					final String[] columns, final DictItem[] beans) throws Exception {
+				super.onBeforeUpdate(manager, columns, beans);
+				for (final DictItem item : beans) {
 					if (item.getItemMark() == EDictItemMark.builtIn_r) {
 						throw ModuleContextException.of($m("DictItemService.1"));
 					}
 				}
+			}
+
+			@Override
+			protected void doAfterEvent(final IDbManager manager, final Object params) {
+				super.doAfterEvent(manager, params);
+				COUNT_STATS.clear();
 			}
 		});
 	}
