@@ -11,8 +11,6 @@ import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.EDictItemMark;
 import net.simpleframework.module.dict.EDictMark;
-import net.simpleframework.module.dict.IDictItemService;
-import net.simpleframework.module.dict.IDictService;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -33,19 +31,18 @@ public class XmlImporter extends AbstractImporter {
 	}
 
 	private void doDict(final Iterator<XmlElement> it, final Dict parent) {
-		final IDictService service = dictContext.getDictService();
 		while (it.hasNext()) {
 			final XmlElement element = it.next();
 			final String name = element.attributeValue("name");
 			if (!StringUtils.hasText(name)) {
 				continue;
 			}
-			Dict dict = service.getDictByName(name);
+			Dict dict = _dictService.getDictByName(name);
 			if (dict != null) { // 已存在
 				continue;
 			}
 
-			dict = service.createBean();
+			dict = _dictService.createBean();
 			dict.setName(name);
 			dict.setText(StringUtils.text(element.attributeValue("text"), name));
 			final String str = element.attributeValue("dictMark");
@@ -62,7 +59,7 @@ public class XmlImporter extends AbstractImporter {
 				dict.setParentId(parent.getId());
 			}
 
-			service.insert(dict);
+			_dictService.insert(dict);
 
 			doDictItem(element.elementIterator("item"), dict);
 			doDict(element.elementIterator("dict"), dict);
@@ -70,7 +67,6 @@ public class XmlImporter extends AbstractImporter {
 	}
 
 	private void doDictItem(final Iterator<XmlElement> it, final Dict dict) {
-		final IDictItemService service = dictContext.getDictItemService();
 		while (it.hasNext()) {
 			final XmlElement element = it.next();
 			final String text = element.attributeValue("text");
@@ -78,7 +74,7 @@ public class XmlImporter extends AbstractImporter {
 				continue;
 			}
 
-			final DictItem item = service.createBean();
+			final DictItem item = _dictItemService.createBean();
 			item.setDictId(dict.getId());
 			item.setText(text);
 			item.setCodeNo(element.attributeValue("codeNo"));
@@ -93,7 +89,7 @@ public class XmlImporter extends AbstractImporter {
 			item.setItemMark(itemMark == null ? EDictItemMark.builtIn_r : itemMark);
 			item.setCreateDate(new Date());
 			item.setDescription(element.elementText("description"));
-			service.insert(item);
+			_dictItemService.insert(item);
 		}
 	}
 }
