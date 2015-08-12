@@ -1,19 +1,11 @@
 package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
-import net.simpleframework.ado.db.IDbManager;
 import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.common.Convert;
-import net.simpleframework.common.ID;
 import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
@@ -57,25 +49,6 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 		return query("dictId=? and parentId is null", dict.getId());
 	}
 
-	protected Map<String, Integer> COUNT_STATS = new ConcurrentHashMap<String, Integer>();
-
-	@Override
-	public int queryCount(final Dict dict) {
-		if (COUNT_STATS.size() == 0) {
-			final IDataQuery<Map<String, Object>> dq = getQueryManager().query(
-					"select dictId, count(*) as cc from sf_dict_item group by dictId");
-			for (Map<String, Object> row; (row = dq.next()) != null;) {
-				COUNT_STATS.put(Convert.toString(row.get("dictId")), Convert.toInt(row.get("cc")));
-			}
-		}
-		return Convert.toInt(COUNT_STATS.get(dict.getId().toString()));
-	}
-
-	@Override
-	public Map<ID, Collection<DictItem>> queryAllTree(final Dict dict) {
-		return toTreeMap(queryItems(dict));
-	}
-
 	@Override
 	public void onInit() throws Exception {
 		super.onInit();
@@ -88,6 +61,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					if (item.getItemMark() != EDictItemMark.normal) {
 						throw ModuleContextException.of($m("DictItemService.0"));
 					}
+					doUpdateItems(item, -1);
 				}
 			}
 
@@ -103,9 +77,18 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			}
 
 			@Override
-			protected void doAfterEvent(final IDbManager manager, final Object params) {
-				super.doAfterEvent(manager, params);
-				COUNT_STATS.clear();
+			public void onAfterInsert(final IDbEntityManager<DictItem> manager, final DictItem[] beans)
+					throws Exception {
+				super.onAfterInsert(manager, beans);
+				for (final DictItem item : beans) {
+					doUpdateItems(item, 0);
+				}
+			}
+
+			private void doUpdateItems(final DictItem item, final int delta) {
+				final Dict dict = _dictService.getBean(item.getDictId());
+				dict.setItems(count("dictid=?", dict.getId()) + delta);
+				_dictService.update(new String[] { "items" }, dict);
 			}
 		});
 	}

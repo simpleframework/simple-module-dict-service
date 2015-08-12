@@ -1,10 +1,6 @@
 package net.simpleframework.module.dict;
 
-import java.util.Collection;
-import java.util.Map;
-
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.common.ID;
 import net.simpleframework.ctx.service.ado.ITreeBeanServiceAware;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
@@ -23,8 +19,6 @@ public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanSer
 	 * @return
 	 */
 	IDataQuery<DictItem> queryItems(Dict dict);
-
-	int queryCount(Dict dict);
 
 	/**
 	 * 获取指定字典的第一级根条目
@@ -51,12 +45,4 @@ public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanSer
 	 * @return
 	 */
 	IDataQuery<DictItem> queryItems(Dict dict, String text);
-
-	/**
-	 * 缓存字典数据
-	 * 
-	 * @param dict
-	 * @return
-	 */
-	Map<ID, Collection<DictItem>> queryAllTree(Dict dict);
 }

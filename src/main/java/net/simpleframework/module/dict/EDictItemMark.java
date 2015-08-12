@@ -9,7 +9,6 @@ import static net.simpleframework.common.I18n.$m;
  *         http://www.simpleframework.net
  */
 public enum EDictItemMark {
-
 	/**
 	 * 可读写，删除
 	 */
@@ -20,7 +19,6 @@ public enum EDictItemMark {
 			return $m("EDictItemMark.normal");
 		}
 	},
-
 	/**
 	 * 内置的条目标识，只读
 	 */
@@ -31,7 +29,6 @@ public enum EDictItemMark {
 			return $m("EDictItemMark.builtIn_r");
 		}
 	},
-
 	/**
 	 * 内置的条目标识，可编辑
 	 */

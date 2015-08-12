@@ -16,6 +16,9 @@ public class Dict extends AbstractDict implements INameBeanAware {
 
 	private EDictMark dictMark;
 
+	/* 统计，条目数目 */
+	private int items;
+
 	@Override
 	public String getName() {
 		return name;
@@ -32,6 +35,14 @@ public class Dict extends AbstractDict implements INameBeanAware {
 
 	public void setDictMark(final EDictMark dictMark) {
 		this.dictMark = dictMark;
+	}
+
+	public int getItems() {
+		return items;
+	}
+
+	public void setItems(final int items) {
+		this.items = items;
 	}
 
 	private static final long serialVersionUID = -1642651214282707289L;
