@@ -1,6 +1,7 @@
 package net.simpleframework.module.dict;
 
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.common.ID;
 import net.simpleframework.ctx.service.ado.ITreeBeanServiceAware;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
@@ -16,17 +17,19 @@ public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanSer
 	 * 获取指定字典的条目
 	 * 
 	 * @param dict
+	 * @param domainId
 	 * @return
 	 */
-	IDataQuery<DictItem> queryItems(Dict dict);
+	IDataQuery<DictItem> queryItems(Dict dict, ID domainId);
 
 	/**
 	 * 获取指定字典的第一级根条目
 	 * 
 	 * @param dict
+	 * @param domainId
 	 * @return
 	 */
-	IDataQuery<DictItem> queryRoot(Dict dict);
+	IDataQuery<DictItem> queryRoot(Dict dict, ID domainId);
 
 	/**
 	 * 根据值获取字典条目
@@ -44,5 +47,5 @@ public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanSer
 	 * @param text
 	 * @return
 	 */
-	IDataQuery<DictItem> queryItems(Dict dict, String text);
+	IDataQuery<DictItem> queryItemsByText(Dict dict, String text);
 }

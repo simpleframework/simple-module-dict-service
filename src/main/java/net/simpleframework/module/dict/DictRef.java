@@ -1,6 +1,5 @@
 package net.simpleframework.module.dict;
 
-import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.ctx.AbstractModuleRef;
 import net.simpleframework.ctx.ModuleContextFactory;
 
@@ -23,10 +22,6 @@ public class DictRef extends AbstractModuleRef {
 
 	public Dict getDictByName(final String dictName) {
 		return getDictService().getDictByName(dictName);
-	}
-
-	public IDataQuery<DictItem> queryItems(final String dictName) {
-		return getDictItemService().queryItems(getDictByName(dictName));
 	}
 
 	/**

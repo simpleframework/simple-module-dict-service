@@ -12,6 +12,7 @@
         text varchar(32) not null, 
         dictmark tinyint not null,
         description varchar(256),
+        items int not null,
         oorder int not null,
         primary key(id),
         unique(name),
