@@ -2,15 +2,14 @@ package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
-import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
-import net.simpleframework.common.coll.ArrayUtils;
 import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
@@ -36,11 +35,12 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 	}
 
 	private IDataQuery<DictItem> _queryItems(final Dict dict, final ID domainId, final boolean root) {
-		if (dict == null) {
-			return DataQueryUtils.nullQuery();
+		final StringBuilder sb = new StringBuilder("1=1");
+		final List<Object> params = new ArrayList<Object>();
+		if (dict != null) {
+			sb.append(" and dictid=?");
+			params.add(dict.getId());
 		}
-		final StringBuilder sb = new StringBuilder("dictid=?");
-		final List<Object> params = ArrayUtils.toParams(dict.getId());
 		if (domainId != null) {
 			sb.append(" and domainid=?");
 			params.add(domainId);
