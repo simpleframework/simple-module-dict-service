@@ -3,6 +3,7 @@ package net.simpleframework.module.dict;
 import java.util.Date;
 
 import net.simpleframework.ado.bean.IDateAwareBean;
+import net.simpleframework.ado.bean.IDomainBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -14,7 +15,7 @@ import net.simpleframework.common.ID;
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "codeNo" })
-public class DictItem extends AbstractDict implements IDateAwareBean {
+public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBeanAware {
 
 	private ID dictId;
 
@@ -34,6 +35,10 @@ public class DictItem extends AbstractDict implements IDateAwareBean {
 	private String ext1;
 	/* 扩展字段2 */
 	private int ext2;
+	/* 扩展字段3 */
+	private String ext3;
+	/* 扩展字段4 */
+	private long ext4;
 
 	public ID getDictId() {
 		return dictId;
@@ -77,10 +82,12 @@ public class DictItem extends AbstractDict implements IDateAwareBean {
 		this.userId = userId;
 	}
 
+	@Override
 	public ID getDomainId() {
 		return domainId;
 	}
 
+	@Override
 	public void setDomainId(final ID domainId) {
 		this.domainId = domainId;
 	}
@@ -99,6 +106,22 @@ public class DictItem extends AbstractDict implements IDateAwareBean {
 
 	public void setExt2(final int ext2) {
 		this.ext2 = ext2;
+	}
+
+	public String getExt3() {
+		return ext3;
+	}
+
+	public void setExt3(final String ext3) {
+		this.ext3 = ext3;
+	}
+
+	public long getExt4() {
+		return ext4;
+	}
+
+	public void setExt4(final long ext4) {
+		this.ext4 = ext4;
 	}
 
 	private static final long serialVersionUID = 5683629062027025972L;

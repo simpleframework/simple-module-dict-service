@@ -1,7 +1,9 @@
 package net.simpleframework.module.dict;
 
+import net.simpleframework.ado.bean.IDomainBeanAware;
 import net.simpleframework.ado.bean.INameBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
+import net.simpleframework.common.ID;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -10,7 +12,9 @@ import net.simpleframework.ado.db.common.EntityInterceptor;
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
-public class Dict extends AbstractDict implements INameBeanAware {
+public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAware {
+	/* 域 */
+	private ID domainId;
 
 	private String name;
 
@@ -18,6 +22,16 @@ public class Dict extends AbstractDict implements INameBeanAware {
 
 	/* 统计，条目数目 */
 	private int items;
+
+	@Override
+	public ID getDomainId() {
+		return domainId;
+	}
+
+	@Override
+	public void setDomainId(final ID domainId) {
+		this.domainId = domainId;
+	}
 
 	@Override
 	public String getName() {
