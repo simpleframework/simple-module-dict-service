@@ -8,9 +8,9 @@ import net.simpleframework.common.StringUtils;
 import net.simpleframework.ctx.common.xml.XmlDocument;
 import net.simpleframework.ctx.common.xml.XmlElement;
 import net.simpleframework.module.dict.Dict;
+import net.simpleframework.module.dict.Dict.EDictMark;
 import net.simpleframework.module.dict.DictItem;
-import net.simpleframework.module.dict.EDictItemMark;
-import net.simpleframework.module.dict.EDictMark;
+import net.simpleframework.module.dict.DictItem.EDictItemMark;
 
 /**
  * Licensed under the Apache License, Version 2.0

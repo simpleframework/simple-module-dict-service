@@ -6,7 +6,7 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
-import net.simpleframework.module.dict.EDictMark;
+import net.simpleframework.module.dict.Dict.EDictMark;
 import net.simpleframework.module.dict.IDictService;
 
 /**
@@ -20,6 +20,15 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 	public Dict getDictByName(final String name) {
 		return getBean("name=?", name);
 	}
+
+	// @Override
+	// public IDataQuery<Dict> queryChildren(final Dict parent, final
+	// ColumnData... orderColumns) {
+	//
+	// final FilterItems items = FilterItems.of().addEqual("parentid",
+	// parent == null ? null : BeanUtils.getProperty(parent, "id"));
+	// return queryByParams(items, orderColumns);
+	// }
 
 	@Override
 	protected ColumnData[] getDefaultOrderColumns() {

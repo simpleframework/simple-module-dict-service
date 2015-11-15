@@ -1,5 +1,6 @@
 package net.simpleframework.module.dict;
 
+import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.bean.IDomainBeanAware;
 import net.simpleframework.ado.bean.INameBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
@@ -57,6 +58,36 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 
 	public void setItems(final int items) {
 		this.items = items;
+	}
+
+	public static enum EDictMark {
+
+		normal {
+			@Override
+			public String toString() {
+				return $m("EDictMark.normal");
+			}
+		},
+
+		/**
+		 * 目录标识
+		 */
+		category {
+			@Override
+			public String toString() {
+				return $m("EDictMark.category");
+			}
+		},
+
+		/**
+		 * 内置的字典标识
+		 */
+		builtIn {
+			@Override
+			public String toString() {
+				return $m("EDictMark.builtIn");
+			}
+		}
 	}
 
 	private static final long serialVersionUID = -1642651214282707289L;

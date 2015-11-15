@@ -13,7 +13,7 @@ import net.simpleframework.common.ID;
 import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
-import net.simpleframework.module.dict.EDictItemMark;
+import net.simpleframework.module.dict.DictItem.EDictItemMark;
 import net.simpleframework.module.dict.IDictItemService;
 
 /**
@@ -42,7 +42,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			params.add(dict.getId());
 		}
 		if (domainId != null) {
-			sb.append(" and domainid=?");
+			sb.append(" and (domainid=? or domainid is null)");
 			params.add(domainId);
 		}
 		if (root) {
