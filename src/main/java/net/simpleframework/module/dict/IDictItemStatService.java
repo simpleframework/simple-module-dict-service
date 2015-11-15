@@ -1,6 +1,6 @@
 package net.simpleframework.module.dict;
 
-import net.simpleframework.ado.bean.AbstractIdBean;
+import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -8,7 +8,5 @@ import net.simpleframework.ado.bean.AbstractIdBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class DictStat extends AbstractIdBean {
-
-	private static final long serialVersionUID = 51479280726627150L;
+public interface IDictItemStatService extends IDbBeanService<DictItemStat> {
 }
