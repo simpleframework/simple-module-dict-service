@@ -42,10 +42,14 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			sb.append(" and dictid=?");
 			params.add(dict.getId());
 		}
+
 		if (domainId != null) {
 			sb.append(" and (domainid=? or domainid is null)");
 			params.add(domainId);
+		} else {
+			sb.append(" and domainid is null");
 		}
+
 		if (root) {
 			sb.append(" and parentid is null");
 		}
