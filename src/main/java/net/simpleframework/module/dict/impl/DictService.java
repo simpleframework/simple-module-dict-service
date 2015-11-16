@@ -4,9 +4,9 @@ import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
-import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.Dict.EDictMark;
+import net.simpleframework.module.dict.DictException;
 import net.simpleframework.module.dict.IDictService;
 
 /**
@@ -38,8 +38,15 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 				for (final Dict dict : coll(manager, paramsValue)) {
 					// 存在下级字典
 					if (queryChildren(dict).getCount() > 0) {
-						throw ModuleContextException.of($m("DictService.0"));
+						throw DictException.of($m("DictService.0"));
 					}
+
+					// 存在字典条目
+					if (_dictItemService.queryItems(dict, null).getCount() > 0) {
+						throw DictException.of($m("DictService.2"));
+					}
+
+					_dictItemStatService.deleteWith("dictid=?", dict.getId());
 				}
 			}
 
@@ -49,7 +56,7 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 				super.onBeforeUpdate(service, columns, beans);
 				for (final Dict dict : beans) {
 					if (dict.getDictMark() == EDictMark.builtIn) {
-						throw ModuleContextException.of($m("DictService.1"));
+						throw DictException.of($m("DictService.1"));
 					}
 				}
 			}

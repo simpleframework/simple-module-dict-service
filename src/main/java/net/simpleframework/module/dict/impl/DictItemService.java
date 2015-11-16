@@ -10,8 +10,8 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
-import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
+import net.simpleframework.module.dict.DictException;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.DictItem.EDictItemMark;
 import net.simpleframework.module.dict.DictItemStat;
@@ -77,7 +77,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 				super.onBeforeDelete(manager, paramsValue);
 				for (final DictItem item : coll(manager, paramsValue)) {
 					if (item.getItemMark() != EDictItemMark.normal) {
-						throw ModuleContextException.of($m("DictItemService.0"));
+						throw DictException.of($m("DictItemService.0"));
 					}
 					// 含有下级不能删除
 				}
@@ -99,7 +99,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 				super.onBeforeUpdate(manager, columns, beans);
 				for (final DictItem item : beans) {
 					if (item.getItemMark() == EDictItemMark.builtIn_r) {
-						throw ModuleContextException.of($m("DictItemService.1"));
+						throw DictException.of($m("DictItemService.1"));
 					}
 				}
 			}
