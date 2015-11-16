@@ -28,9 +28,7 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 		return new DbEntityTable[] {
 				new DbEntityTable(Dict.class, "sf_dict"),
 				new DbEntityTable(DictItem.class, "sf_dict_item").setDefaultOrder(ColumnData
-						.ASC("oorder")), new DbEntityTable(DictItemStat.class, "sf_dict_item_stat")
-
-		};
+						.ASC("oorder")), new DbEntityTable(DictItemStat.class, "sf_dict_item_stat") };
 	}
 
 	@Override
