@@ -1,5 +1,6 @@
 package net.simpleframework.module.dict;
 
+import net.simpleframework.common.ID;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
 /**
@@ -9,4 +10,13 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  *         http://www.simpleframework.net
  */
 public interface IDictItemStatService extends IDbBeanService<DictItemStat> {
+
+	/**
+	 * 获取字典统计信息
+	 * 
+	 * @param dictId
+	 * @param domainId
+	 * @return
+	 */
+	DictItemStat getDictItemStat(ID dictId, ID domainId);
 }

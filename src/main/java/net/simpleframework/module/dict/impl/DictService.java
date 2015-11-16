@@ -21,15 +21,6 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 		return getBean("name=?", name);
 	}
 
-	// @Override
-	// public IDataQuery<Dict> queryChildren(final Dict parent, final
-	// ColumnData... orderColumns) {
-	//
-	// final FilterItems items = FilterItems.of().addEqual("parentid",
-	// parent == null ? null : BeanUtils.getProperty(parent, "id"));
-	// return queryByParams(items, orderColumns);
-	// }
-
 	@Override
 	protected ColumnData[] getDefaultOrderColumns() {
 		return ORDER_OORDER;

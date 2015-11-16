@@ -8,8 +8,10 @@ import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
+import net.simpleframework.module.dict.DictItemStat;
 import net.simpleframework.module.dict.IDictContext;
 import net.simpleframework.module.dict.IDictItemService;
+import net.simpleframework.module.dict.IDictItemStatService;
 import net.simpleframework.module.dict.IDictService;
 
 /**
@@ -26,7 +28,9 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 		return new DbEntityTable[] {
 				new DbEntityTable(Dict.class, "sf_dict"),
 				new DbEntityTable(DictItem.class, "sf_dict_item").setDefaultOrder(ColumnData
-						.ASC("oorder")) };
+						.ASC("oorder")), new DbEntityTable(DictItemStat.class, "sf_dict_item_stat")
+
+		};
 	}
 
 	@Override
@@ -52,6 +56,11 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 	@Override
 	public IDictItemService getDictItemService() {
 		return singleton(DictItemService.class);
+	}
+
+	@Override
+	public IDictItemStatService getDictItemStatService() {
+		return singleton(DictItemStatService.class);
 	}
 
 	@Override

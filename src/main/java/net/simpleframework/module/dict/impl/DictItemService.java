@@ -14,6 +14,7 @@ import net.simpleframework.ctx.ModuleContextException;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.DictItem.EDictItemMark;
+import net.simpleframework.module.dict.DictItemStat;
 import net.simpleframework.module.dict.IDictItemService;
 
 /**
@@ -76,7 +77,17 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					if (item.getItemMark() != EDictItemMark.normal) {
 						throw ModuleContextException.of($m("DictItemService.0"));
 					}
-					doUpdateItems(item, -1);
+					// 含有下级不能删除
+				}
+			}
+
+			@Override
+			public void onAfterDelete(final IDbEntityManager<DictItem> manager,
+					final IParamsValue paramsValue) throws Exception {
+				super.onAfterDelete(manager, paramsValue);
+				for (final DictItem item : coll(manager, paramsValue)) {
+					// 更新状态
+					updateStats(item);
 				}
 			}
 
@@ -96,15 +107,18 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					throws Exception {
 				super.onAfterInsert(manager, beans);
 				for (final DictItem item : beans) {
-					doUpdateItems(item, 0);
+					// 更新状态
+					updateStats(item);
 				}
 			}
-
-			private void doUpdateItems(final DictItem item, final int delta) {
-				final Dict dict = _dictService.getBean(item.getDictId());
-				dict.setItems(count("dictid=?", dict.getId()) + delta);
-				_dictService.update(new String[] { "items" }, dict);
-			}
 		});
+	}
+
+	void updateStats(final DictItem item) {
+		final DictItemStatService _diStatServiceImpl = (DictItemStatService) _dictItemStatService;
+		final DictItemStat stat = _diStatServiceImpl.getDictItemStat(item.getDictId(),
+				item.getDomainId());
+		_diStatServiceImpl.setDictItemStat(stat);
+		_diStatServiceImpl.update(stat);
 	}
 }

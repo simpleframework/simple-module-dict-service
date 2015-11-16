@@ -15,4 +15,6 @@ public interface IDictContextAware extends IModuleContextAware {
 
 	static final IDictService _dictService = dictContext.getDictService();
 	static final IDictItemService _dictItemService = dictContext.getDictItemService();
+
+	static final IDictItemStatService _dictItemStatService = dictContext.getDictItemStatService();
 }

@@ -13,7 +13,6 @@
         text varchar(32) not null, 
         dictmark int2 not null,
         description varchar(256),
-        items int4 not null,
         oorder int4 not null,
         primary key(id),
         unique(name),
@@ -42,6 +41,17 @@
         primary key(id),
         unique(dictid, codeno),
         unique(oorder)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_dict_item_stat (
+        id char(32) not null,
+        dictid char(32),
+        domainid char(32),
+        nums int4 not null,
+        primary key(id)
       );
     ]]>
   </tran-sql>

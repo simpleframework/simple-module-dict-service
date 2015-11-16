@@ -15,6 +15,9 @@ public class DictItemStat extends AbstractIdBean {
 	/* 域id */
 	private ID domainId;
 
+	/* 总数 */
+	private int nums;
+
 	public ID getDictId() {
 		return dictId;
 	}
@@ -29,6 +32,14 @@ public class DictItemStat extends AbstractIdBean {
 
 	public void setDomainId(final ID domainId) {
 		this.domainId = domainId;
+	}
+
+	public int getNums() {
+		return nums;
+	}
+
+	public void setNums(final int nums) {
+		this.nums = nums;
 	}
 
 	private static final long serialVersionUID = 51479280726627150L;

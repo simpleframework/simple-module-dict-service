@@ -27,6 +27,8 @@ public interface IDictContext extends IModuleContext {
 	 */
 	IDictItemService getDictItemService();
 
+	IDictItemStatService getDictItemStatService();
+
 	/**
 	 * 获取机构的引用对象
 	 * 

@@ -68,6 +68,9 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 
 	@Override
 	public Date getCreateDate() {
+		if (createDate == null) {
+			createDate = new Date();
+		}
 		return createDate;
 	}
 

@@ -21,9 +21,6 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 
 	private EDictMark dictMark;
 
-	/* 统计，条目数目 */
-	private int items;
-
 	@Override
 	public ID getDomainId() {
 		return domainId;
@@ -50,14 +47,6 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 
 	public void setDictMark(final EDictMark dictMark) {
 		this.dictMark = dictMark;
-	}
-
-	public int getItems() {
-		return items;
-	}
-
-	public void setItems(final int items) {
-		this.items = items;
 	}
 
 	public static enum EDictMark {
