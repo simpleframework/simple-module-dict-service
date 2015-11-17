@@ -19,6 +19,11 @@ public class DictItemStatService extends AbstractDictService<DictItemStat> imple
 		IDictItemStatService {
 
 	@Override
+	public int getAllNums(final ID dictId) {
+		return sum("nums", "dictid=?", dictId).intValue();
+	}
+
+	@Override
 	public DictItemStat getDictItemStat(final ID dictId, final ID domainId) {
 		final StringBuilder sql = new StringBuilder("dictid=?");
 		final List<Object> params = ArrayUtils.toParams(dictId);
