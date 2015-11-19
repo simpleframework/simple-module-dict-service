@@ -98,7 +98,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					final String[] columns, final DictItem[] beans) throws Exception {
 				super.onBeforeUpdate(manager, columns, beans);
 				for (final DictItem item : beans) {
-					if (item.getItemMark() == EDictItemMark.builtIn_r) {
+					if (item.getItemMark() == EDictItemMark.builtIn) {
 						throw DictException.of($m("DictItemService.1"));
 					}
 				}

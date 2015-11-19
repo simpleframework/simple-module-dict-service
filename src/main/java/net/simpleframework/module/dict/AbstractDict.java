@@ -13,7 +13,7 @@ import net.simpleframework.common.ID;
  */
 @SuppressWarnings("serial")
 public abstract class AbstractDict extends AbstractTextDescriptionBean implements ITreeBeanAware,
-		IOrderBeanAware {
+		IOrderBeanAware, IDictContextAware {
 
 	private ID parentId;
 

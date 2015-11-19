@@ -41,6 +41,15 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 		this.name = name;
 	}
 
+	@Override
+	public void setParentId(final ID parentId) {
+		final Dict parent = _dictService.getBean(parentId);
+		if (parent != null && parent.getDictMark() != EDictMark.category) {
+			throw DictException.of($m("Dict.0"));
+		}
+		super.setParentId(parentId);
+	}
+
 	public EDictMark getDictMark() {
 		return dictMark == null ? EDictMark.normal : dictMark;
 	}

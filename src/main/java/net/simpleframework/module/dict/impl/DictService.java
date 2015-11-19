@@ -4,6 +4,8 @@ import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.common.object.ObjectUtils;
+import net.simpleframework.ctx.permission.LoginUser;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.Dict.EDictMark;
 import net.simpleframework.module.dict.DictException;
@@ -32,13 +34,25 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 
 		addListener(new DbEntityAdapterEx<Dict>() {
 			@Override
+			public void onAfterInsert(final IDbEntityManager<Dict> manager, final Dict[] beans)
+					throws Exception {
+				super.onAfterInsert(manager, beans);
+			}
+
+			@Override
 			public void onBeforeDelete(final IDbEntityManager<Dict> manager,
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
+
 				for (final Dict dict : coll(manager, paramsValue)) {
+					// 不在同一个域内
+					if (!ObjectUtils.objectEquals(LoginUser.user().getDomainId(), dict.getDomainId())) {
+						throw DictException.of($m("DictService.0"));
+					}
+
 					// 存在下级字典
 					if (queryChildren(dict).getCount() > 0) {
-						throw DictException.of($m("DictService.0"));
+						throw DictException.of($m("DictService.1"));
 					}
 
 					// 存在字典条目

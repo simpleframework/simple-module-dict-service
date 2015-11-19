@@ -141,23 +141,13 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 			}
 		},
 		/**
-		 * 内置的条目标识，只读
+		 * 内置的条目标识
 		 */
-		builtIn_r {
+		builtIn {
 
 			@Override
 			public String toString() {
-				return $m("EDictItemMark.builtIn_r");
-			}
-		},
-		/**
-		 * 内置的条目标识，可编辑
-		 */
-		builtIn_w {
-
-			@Override
-			public String toString() {
-				return $m("EDictItemMark.builtIn_w");
+				return $m("EDictItemMark.builtIn");
 			}
 		}
 	}

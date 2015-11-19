@@ -53,7 +53,7 @@ public class XmlImporter extends AbstractImporter {
 				} catch (final Exception ex) {
 				}
 			}
-			dict.setDictMark(dictMark == null ? EDictMark.builtIn : dictMark);
+			dict.setDictMark(dictMark == null ? EDictMark.normal : dictMark);
 			dict.setDescription(element.elementText("description"));
 			if (parent != null) {
 				dict.setParentId(parent.getId());
@@ -86,7 +86,7 @@ public class XmlImporter extends AbstractImporter {
 				} catch (final Exception ex) {
 				}
 			}
-			item.setItemMark(itemMark == null ? EDictItemMark.builtIn_r : itemMark);
+			item.setItemMark(itemMark == null ? EDictItemMark.builtIn : itemMark);
 			item.setCreateDate(new Date());
 			item.setDescription(element.elementText("description"));
 			_dictItemService.insert(item);
