@@ -1,5 +1,7 @@
 package net.simpleframework.module.dict.impl;
 
+import static net.simpleframework.common.I18n.$m;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,10 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
+import net.simpleframework.common.object.ObjectUtils;
+import net.simpleframework.ctx.permission.LoginUser;
 import net.simpleframework.module.dict.Dict;
+import net.simpleframework.module.dict.DictException;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.DictItemStat;
 import net.simpleframework.module.dict.IDictItemService;
@@ -72,10 +77,15 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				for (final DictItem item : coll(manager, paramsValue)) {
-					// if (item.getItemMark() != EDictItemMark.normal) {
-					// throw DictException.of($m("DictItemService.0"));
-					// }
+					// 不在同一个域内
+					if (!ObjectUtils.objectEquals(LoginUser.user().getDomainId(), item.getDomainId())) {
+						throw DictException.of($m("DictService.0"));
+					}
+
 					// 含有下级不能删除
+					if (queryChildren(item).getCount() > 0) {
+						throw DictException.of($m("DictItemService.0"));
+					}
 				}
 			}
 
@@ -94,9 +104,10 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					final String[] columns, final DictItem[] beans) throws Exception {
 				super.onBeforeUpdate(manager, columns, beans);
 				for (final DictItem item : beans) {
-					// if (item.getItemMark() == EDictItemMark.builtIn) {
-					// throw DictException.of($m("DictItemService.1"));
-					// }
+					// 不在同一个域内
+					if (!ObjectUtils.objectEquals(LoginUser.user().getDomainId(), item.getDomainId())) {
+						throw DictException.of($m("DictService.3"));
+					}
 				}
 			}
 
