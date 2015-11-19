@@ -1,7 +1,5 @@
 package net.simpleframework.module.dict.impl;
 
-import static net.simpleframework.common.I18n.$m;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +9,7 @@ import net.simpleframework.ado.db.common.SqlUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.dict.Dict;
-import net.simpleframework.module.dict.DictException;
 import net.simpleframework.module.dict.DictItem;
-import net.simpleframework.module.dict.DictItem.EDictItemMark;
 import net.simpleframework.module.dict.DictItemStat;
 import net.simpleframework.module.dict.IDictItemService;
 
@@ -76,9 +72,9 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				for (final DictItem item : coll(manager, paramsValue)) {
-					if (item.getItemMark() != EDictItemMark.normal) {
-						throw DictException.of($m("DictItemService.0"));
-					}
+					// if (item.getItemMark() != EDictItemMark.normal) {
+					// throw DictException.of($m("DictItemService.0"));
+					// }
 					// 含有下级不能删除
 				}
 			}
@@ -98,9 +94,9 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 					final String[] columns, final DictItem[] beans) throws Exception {
 				super.onBeforeUpdate(manager, columns, beans);
 				for (final DictItem item : beans) {
-					if (item.getItemMark() == EDictItemMark.builtIn) {
-						throw DictException.of($m("DictItemService.1"));
-					}
+					// if (item.getItemMark() == EDictItemMark.builtIn) {
+					// throw DictException.of($m("DictItemService.1"));
+					// }
 				}
 			}
 

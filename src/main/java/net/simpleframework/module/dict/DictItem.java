@@ -1,7 +1,5 @@
 package net.simpleframework.module.dict;
 
-import static net.simpleframework.common.I18n.$m;
-
 import java.util.Date;
 
 import net.simpleframework.ado.bean.IDateAwareBean;
@@ -24,7 +22,6 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 	/* 编码 */
 	private String codeNo;
 
-	private EDictItemMark itemMark;
 	/* 字典条目的创建日期 */
 	private Date createDate;
 
@@ -48,14 +45,6 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 
 	public void setDictId(final ID dictId) {
 		this.dictId = dictId;
-	}
-
-	public EDictItemMark getItemMark() {
-		return itemMark == null ? EDictItemMark.normal : itemMark;
-	}
-
-	public void setItemMark(final EDictItemMark itemMark) {
-		this.itemMark = itemMark;
 	}
 
 	public String getCodeNo() {
@@ -127,29 +116,6 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 
 	public void setExt4(final long ext4) {
 		this.ext4 = ext4;
-	}
-
-	public static enum EDictItemMark {
-		/**
-		 * 可读写，删除
-		 */
-		normal {
-
-			@Override
-			public String toString() {
-				return $m("EDictItemMark.normal");
-			}
-		},
-		/**
-		 * 内置的条目标识
-		 */
-		builtIn {
-
-			@Override
-			public String toString() {
-				return $m("EDictItemMark.builtIn");
-			}
-		}
 	}
 
 	private static final long serialVersionUID = 5683629062027025972L;

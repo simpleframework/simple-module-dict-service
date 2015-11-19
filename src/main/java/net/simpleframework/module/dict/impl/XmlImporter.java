@@ -10,7 +10,6 @@ import net.simpleframework.ctx.common.xml.XmlElement;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.Dict.EDictMark;
 import net.simpleframework.module.dict.DictItem;
-import net.simpleframework.module.dict.DictItem.EDictItemMark;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -78,15 +77,6 @@ public class XmlImporter extends AbstractImporter {
 			item.setDictId(dict.getId());
 			item.setText(text);
 			item.setCodeNo(element.attributeValue("codeNo"));
-			final String str = element.attributeValue("itemMark");
-			EDictItemMark itemMark = null;
-			if (StringUtils.hasText(str)) {
-				try {
-					itemMark = EDictItemMark.valueOf(str);
-				} catch (final Exception ex) {
-				}
-			}
-			item.setItemMark(itemMark == null ? EDictItemMark.builtIn : itemMark);
 			item.setCreateDate(new Date());
 			item.setDescription(element.elementText("description"));
 			_dictItemService.insert(item);

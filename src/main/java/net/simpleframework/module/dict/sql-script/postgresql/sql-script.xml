@@ -29,7 +29,6 @@
         domainid char(32),
         text varchar(128) not null, 
         codeno varchar(128),
-        itemmark int2 not null,
         createDate timestamp,
         userid char(32),
         description varchar(256),

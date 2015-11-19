@@ -59,7 +59,6 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 	}
 
 	public static enum EDictMark {
-
 		normal {
 			@Override
 			public String toString() {
@@ -74,16 +73,6 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 			@Override
 			public String toString() {
 				return $m("EDictMark.category");
-			}
-		},
-
-		/**
-		 * 内置的字典标识
-		 */
-		builtIn {
-			@Override
-			public String toString() {
-				return $m("EDictMark.builtIn");
 			}
 		}
 	}
