@@ -1,11 +1,14 @@
 package net.simpleframework.module.dict;
 
+import static net.simpleframework.common.I18n.$m;
+
 import java.util.Date;
 
 import net.simpleframework.ado.bean.IDateAwareBean;
 import net.simpleframework.ado.bean.IDomainBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
+import net.simpleframework.common.object.ObjectUtils;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -53,6 +56,15 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 
 	public void setCodeNo(final String codeNo) {
 		this.codeNo = codeNo;
+	}
+
+	@Override
+	public void setParentId(final ID parentId) {
+		final DictItem parent = _dictItemService.getBean(parentId);
+		if (parent != null && !ObjectUtils.objectEquals(parent.getDomainId(), getDomainId())) {
+			throw DictException.of($m("DictService.3"));
+		}
+		super.setParentId(parentId);
 	}
 
 	@Override

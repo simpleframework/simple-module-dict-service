@@ -12,6 +12,7 @@ import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.object.ObjectUtils;
 import net.simpleframework.ctx.permission.LoginUser;
+import net.simpleframework.ctx.permission.PermissionUser;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictException;
 import net.simpleframework.module.dict.DictItem;
@@ -76,9 +77,11 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			public void onBeforeDelete(final IDbEntityManager<DictItem> manager,
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
+				final PermissionUser puser = LoginUser.user();
 				for (final DictItem item : coll(manager, paramsValue)) {
 					// 不在同一个域内
-					if (!ObjectUtils.objectEquals(LoginUser.user().getDomainId(), item.getDomainId())) {
+					if (!puser.isManager()
+							&& !ObjectUtils.objectEquals(puser.getDomainId(), item.getDomainId())) {
 						throw DictException.of($m("DictService.0"));
 					}
 
@@ -103,9 +106,12 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			public void onBeforeUpdate(final IDbEntityManager<DictItem> manager,
 					final String[] columns, final DictItem[] beans) throws Exception {
 				super.onBeforeUpdate(manager, columns, beans);
+
+				final PermissionUser puser = LoginUser.user();
 				for (final DictItem item : beans) {
 					// 不在同一个域内
-					if (!ObjectUtils.objectEquals(LoginUser.user().getDomainId(), item.getDomainId())) {
+					if (!puser.isManager()
+							&& !ObjectUtils.objectEquals(puser.getDomainId(), item.getDomainId())) {
 						throw DictException.of($m("DictService.3"));
 					}
 				}
