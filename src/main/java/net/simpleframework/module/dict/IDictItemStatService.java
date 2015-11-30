@@ -20,5 +20,5 @@ public interface IDictItemStatService extends IDbBeanService<DictItemStat> {
 	 */
 	DictItemStat getDictItemStat(ID dictId, ID domainId);
 
-	int getAllNums(ID dictId);
+	int getAllNums(ID dictId, String prop);
 }

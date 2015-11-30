@@ -19,8 +19,8 @@ public class DictItemStatService extends AbstractDictService<DictItemStat> imple
 		IDictItemStatService {
 
 	@Override
-	public int getAllNums(final ID dictId) {
-		return sum("nums", "dictid=?", dictId).intValue();
+	public int getAllNums(final ID dictId, final String prop) {
+		return sum(prop, "dictid=?", dictId).intValue();
 	}
 
 	@Override
