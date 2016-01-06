@@ -35,7 +35,7 @@
         ext1 varchar(64),
         ext2 int not null,
         ext3 varchar(64),
-        ext4 bigint not null,
+        ext4 float not null,
         oorder int not null,
         primary key(id),
         unique(dictid, codeno),

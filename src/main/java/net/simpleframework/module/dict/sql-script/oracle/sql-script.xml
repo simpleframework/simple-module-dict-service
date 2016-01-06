@@ -35,7 +35,7 @@
         ext1 varchar2(64 char),
         ext2 number(11) not null,
         ext3 varchar2(64 char),
-        ext4 number(20) not null,
+        ext4 number(20, 14) not null,
         oorder number(11) not null,
         primary key(id),
         unique(dictid, codeno),

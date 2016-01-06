@@ -40,7 +40,7 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 	/* 扩展字段3 */
 	private String ext3;
 	/* 扩展字段4 */
-	private long ext4;
+	private double ext4;
 
 	public ID getDictId() {
 		return dictId;
@@ -122,11 +122,11 @@ public class DictItem extends AbstractDict implements IDateAwareBean, IDomainBea
 		this.ext3 = ext3;
 	}
 
-	public long getExt4() {
+	public double getExt4() {
 		return ext4;
 	}
 
-	public void setExt4(final long ext4) {
+	public void setExt4(final double ext4) {
 		this.ext4 = ext4;
 	}
 
