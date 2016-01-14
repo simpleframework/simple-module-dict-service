@@ -33,7 +33,7 @@ public class Dict extends AbstractDict implements INameBeanAware, IDomainBeanAwa
 
 	@Override
 	public String getName() {
-		return name;
+		return name != null ? name.trim() : null;
 	}
 
 	@Override
