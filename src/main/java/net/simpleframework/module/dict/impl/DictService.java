@@ -38,13 +38,9 @@ public class DictService extends AbstractDictService<Dict> implements IDictServi
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 
-				final PermissionUser puser = LoginUser.user();
 				for (final Dict dict : coll(manager, paramsValue)) {
 					// 不在同一个域内
-					if (!puser.isManager()
-							&& !ObjectUtils.objectEquals(puser.getDomainId(), dict.getDomainId())) {
-						throw DictException.of($m("DictService.0"));
-					}
+					assetDomainId_delete(dict.getDomainId());
 
 					// 存在下级字典
 					if (queryChildren(dict).getCount() > 0) {
