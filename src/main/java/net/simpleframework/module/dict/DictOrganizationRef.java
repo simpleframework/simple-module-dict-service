@@ -2,7 +2,7 @@ package net.simpleframework.module.dict;
 
 import static net.simpleframework.common.I18n.$m;
 import static net.simpleframework.module.dict.impl.DictContext.ROLE_DICT_MANAGER;
-import net.simpleframework.ctx.IModuleContext;
+import net.simpleframework.ctx.IContextBase;
 import net.simpleframework.organization.OrganizationRef;
 import net.simpleframework.organization.Role.ERoleType;
 import net.simpleframework.organization.role.RolenameW;
@@ -16,7 +16,7 @@ import net.simpleframework.organization.role.RolenameW;
 public class DictOrganizationRef extends OrganizationRef {
 
 	@Override
-	public void onInit(final IModuleContext context) throws Exception {
+	public void onInit(final IContextBase context) throws Exception {
 		super.onInit(context);
 
 		ROLE_DICT_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_ORG_DEFAULT, "dictmgr");

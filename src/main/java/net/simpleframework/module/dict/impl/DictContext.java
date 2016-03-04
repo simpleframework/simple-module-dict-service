@@ -6,6 +6,7 @@ import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
+import net.simpleframework.ctx.ModuleRefUtils;
 import net.simpleframework.module.dict.Dict;
 import net.simpleframework.module.dict.DictItem;
 import net.simpleframework.module.dict.DictItemStat;
@@ -63,6 +64,6 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 
 	@Override
 	public IModuleRef getOrganizationRef() {
-		return getRef("net.simpleframework.module.dict.DictOrganizationRef");
+		return ModuleRefUtils.getRef("net.simpleframework.module.dict.DictOrganizationRef");
 	}
 }
