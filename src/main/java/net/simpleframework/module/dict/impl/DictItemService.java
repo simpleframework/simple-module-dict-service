@@ -5,6 +5,7 @@ import static net.simpleframework.common.I18n.$m;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
@@ -57,7 +58,12 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 		if (root) {
 			sb.append(" and parentid is null");
 		}
-		return query(sb, params.toArray());
+		return query(sb.append(" order by oorder asc"), params.toArray());
+	}
+
+	@Override
+	protected ColumnData[] getDefaultOrderColumns() {
+		return ORDER_OORDER;
 	}
 
 	@Override
@@ -110,13 +116,18 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			public void onBeforeUpdate(final IDbEntityManager<DictItem> manager,
 					final String[] columns, final DictItem[] beans) throws Exception {
 				super.onBeforeUpdate(manager, columns, beans);
-
 				final PermissionUser puser = LoginUser.user();
 				for (final DictItem item : beans) {
 					// 不在同一个域内
-					if (!puser.isManager()
-							&& !ObjectUtils.objectEquals(puser.getDomainId(), item.getDomainId())) {
-						throw DictException.of($m("DictService.3"));
+					if (!puser.isManager()) {
+						final ID uDomainId = puser.getDomainId();
+						if (!ObjectUtils.objectEquals(uDomainId, item.getDomainId())) {
+							throw DictException.of($m("DictService.3"));
+						}
+						final DictItem parent = _dictItemService.getBean(item.getParentId());
+						if (parent != null && !ObjectUtils.objectEquals(uDomainId, parent.getDomainId())) {
+							throw DictException.of($m("DictService.3"));
+						}
 					}
 				}
 			}
