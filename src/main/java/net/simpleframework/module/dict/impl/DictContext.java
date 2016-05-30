@@ -3,6 +3,7 @@ package net.simpleframework.module.dict.impl;
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
@@ -34,17 +35,17 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 
 	@Override
 	protected Module createModule() {
-		return new Module() {
-			@Override
-			public String getManagerRole() {
-				return ROLE_DICT_MANAGER;
-			}
+		return super.createModule().setName(MODULE_NAME).setText($m("DictContext.0")).setOrder(35);
+	}
 
-			@Override
-			public String getRole() {
-				return ROLE_DICT_MANAGER;
-			}
-		}.setName(MODULE_NAME).setText($m("DictContext.0")).setOrder(35);
+	@Override
+	protected String getRole(final KVMap vars) {
+		return ROLE_DICT_MANAGER;
+	}
+
+	@Override
+	protected String getManagerRole(final KVMap vars) {
+		return ROLE_DICT_MANAGER;
 	}
 
 	@Override
