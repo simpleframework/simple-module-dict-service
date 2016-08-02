@@ -5,7 +5,6 @@ import static net.simpleframework.common.I18n.$m;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
@@ -59,11 +58,6 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			sb.append(" and parentid is null");
 		}
 		return query(sb.append(" order by oorder asc"), params.toArray());
-	}
-
-	@Override
-	protected ColumnData[] getDefaultOrderColumns() {
-		return ORDER_OORDER;
 	}
 
 	@Override
