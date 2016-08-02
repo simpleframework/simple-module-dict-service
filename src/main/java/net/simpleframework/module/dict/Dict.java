@@ -1,6 +1,7 @@
 package net.simpleframework.module.dict;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.bean.IDomainBeanAware;
 import net.simpleframework.ado.bean.INameBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;

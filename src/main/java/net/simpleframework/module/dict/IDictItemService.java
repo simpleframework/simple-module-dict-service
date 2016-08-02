@@ -11,7 +11,8 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public interface IDictItemService extends IDbBeanService<DictItem>, ITreeBeanServiceAware<DictItem> {
+public interface IDictItemService
+		extends IDbBeanService<DictItem>, ITreeBeanServiceAware<DictItem> {
 
 	/**
 	 * 获取指定字典的条目

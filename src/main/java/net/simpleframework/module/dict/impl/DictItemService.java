@@ -5,7 +5,6 @@ import static net.simpleframework.common.I18n.$m;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.SqlUtils;
@@ -38,7 +37,8 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 		return _queryItems(dict, domainId, true);
 	}
 
-	private IDataQuery<DictItem> _queryItems(final Dict dict, final ID domainId, final boolean root) {
+	private IDataQuery<DictItem> _queryItems(final Dict dict, final ID domainId,
+			final boolean root) {
 		final StringBuilder sb = new StringBuilder("1=1");
 		final List<Object> params = new ArrayList<Object>();
 		if (dict != null) {
@@ -59,11 +59,6 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 			sb.append(" and parentid is null");
 		}
 		return query(sb.append(" order by oorder asc"), params.toArray());
-	}
-
-	@Override
-	protected ColumnData[] getDefaultOrderColumns() {
-		return ORDER_OORDER;
 	}
 
 	@Override
@@ -125,7 +120,8 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 							throw DictException.of($m("DictService.3"));
 						}
 						final DictItem parent = _dictItemService.getBean(item.getParentId());
-						if (parent != null && !ObjectUtils.objectEquals(uDomainId, parent.getDomainId())) {
+						if (parent != null
+								&& !ObjectUtils.objectEquals(uDomainId, parent.getDomainId())) {
 							throw DictException.of($m("DictService.3"));
 						}
 					}

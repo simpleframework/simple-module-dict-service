@@ -1,6 +1,7 @@
 package net.simpleframework.module.dict.impl;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.common.coll.KVMap;
@@ -27,10 +28,10 @@ public class DictContext extends AbstractADOModuleContext implements IDictContex
 
 	@Override
 	protected DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] {
-				new DbEntityTable(Dict.class, "sf_dict"),
-				new DbEntityTable(DictItem.class, "sf_dict_item").setDefaultOrder(ColumnData
-						.ASC("oorder")), new DbEntityTable(DictItemStat.class, "sf_dict_item_stat") };
+		return new DbEntityTable[] { new DbEntityTable(Dict.class, "sf_dict"),
+				new DbEntityTable(DictItem.class, "sf_dict_item")
+						.setDefaultOrder(ColumnData.ASC("oorder")),
+				new DbEntityTable(DictItemStat.class, "sf_dict_item_stat") };
 	}
 
 	@Override

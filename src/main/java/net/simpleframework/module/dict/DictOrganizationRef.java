@@ -2,6 +2,7 @@ package net.simpleframework.module.dict;
 
 import static net.simpleframework.common.I18n.$m;
 import static net.simpleframework.module.dict.impl.DictContext.ROLE_DICT_MANAGER;
+
 import net.simpleframework.ctx.IContextBase;
 import net.simpleframework.organization.OrganizationRef;
 import net.simpleframework.organization.bean.Role.ERoleType;

@@ -15,8 +15,8 @@ import net.simpleframework.module.dict.IDictItemStatService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class DictItemStatService extends AbstractDictService<DictItemStat> implements
-		IDictItemStatService {
+public class DictItemStatService extends AbstractDictService<DictItemStat>
+		implements IDictItemStatService {
 
 	@Override
 	public int getAllNums(final ID dictId, final String prop) {
@@ -46,8 +46,8 @@ public class DictItemStatService extends AbstractDictService<DictItemStat> imple
 
 	void setDictItemStat(final DictItemStat stat) {
 		final List<Object> params = ArrayUtils.toParams(stat.getDictId());
-		final StringBuilder sql = new StringBuilder("select count(*) as c from ").append(
-				getTablename(DictItem.class)).append(" i where i.dictid=?");
+		final StringBuilder sql = new StringBuilder("select count(*) as c from ")
+				.append(getTablename(DictItem.class)).append(" i where i.dictid=?");
 		final ID domainId = stat.getDomainId();
 		if (domainId != null) {
 			sql.append(" and i.domainid=?");
