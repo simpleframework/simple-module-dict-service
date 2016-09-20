@@ -40,7 +40,7 @@ public class DictItemService extends AbstractDictService<DictItem> implements ID
 	private IDataQuery<DictItem> _queryItems(final Dict dict, final ID domainId,
 			final boolean root) {
 		final StringBuilder sb = new StringBuilder("1=1");
-		final List<Object> params = new ArrayList<Object>();
+		final List<Object> params = new ArrayList<>();
 		if (dict != null) {
 			sb.append(" and dictid=?");
 			params.add(dict.getId());
